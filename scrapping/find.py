@@ -1,6 +1,5 @@
-import os, threading, requests, sqlite3
+import threading, requests, sqlite3
 from bs4 import BeautifulSoup
-
 
 with open("sitemap.xml", 'r') as f:
     content = f.readlines()
@@ -13,10 +12,9 @@ for url in content:
     if searched in url:
         l.append("https"+url)
 
-
 l_title_desc = []
-print("getting content")
-for url in l:
+def get_content(url):
+    global l_title_desc
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
 
@@ -28,6 +26,16 @@ for url in l:
     description_content = meta_description['content'] if meta_description else "No description found"
 
     l_title_desc.append([title, description_content])
+
+
+print("getting content")
+l_threads = []
+for i in range(len(l)):
+    t = threading.Thread(target=get_content, args=(l[i],)) # l[i] = url; let the `,` where it is.
+    t.start()
+    l_threads.append(t)
+
+for t in l_threads: t.join()
 
 print("Done")
 
