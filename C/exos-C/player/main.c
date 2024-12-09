@@ -38,5 +38,7 @@ int main() {
 			show_player(map, &player);
 		}
 	}
+
+  free_map(map);
 	return 0;
 }

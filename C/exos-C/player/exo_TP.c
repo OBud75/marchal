@@ -12,6 +12,17 @@ Map* get_map(int height, int width) {
     return map;
 }
 
+void free_map(Map* map) {
+    // Free each row of blocks
+    for (int i = 0; i < map->height; i++) {
+        free(map->blocks[i]);
+    }
+    // Free the array of pointers to rows
+    free(map->blocks);
+    // Free the map itself
+    free(map);
+}
+
 void load_blocks(Map* map) {
     for (int i = 0; i < map->height; i++) {
         for (int j = 0; j < map->width; j++) {
