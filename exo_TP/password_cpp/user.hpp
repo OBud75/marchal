@@ -1,7 +1,9 @@
 #include <memory>
+#include <iostream>
+#include <fstream>
 #include <string>
 
-class Password; // makes a error.
+class Password; 
 
 class User {
     private:
@@ -11,6 +13,7 @@ class User {
 
     public:
         explicit User(int id, Password &password);
+
         void save();
         int login(char *raw_password);
         static User &get(int id);

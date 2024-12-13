@@ -2,15 +2,37 @@
 #include "password.hpp"
 
 User::User(int id, Password &password): id(id), password(password) {
-  is_logged_in = false;
+  this.is_logged_in = false;
 }
 
-/*
+bool does_id_exits(std::string) {
+  std::ifstream file("filename.txt");
+  
+  if (file.is_open()) {
+    std::string line;
+    while (std::getline(file, line)) {
+      std::cout << line << std::endl;
+    }
+    file.close();
+  } else {
+    std::cerr << "Unable to open file" << std::endl;
+  }
+
+  return false;
+}
+
+
 void User::save() {
   // In a file (or DB)
-  // id | password (hashed) 
-  std::string content = std::to_string(this->id) + "|" + password->str();
-  printf("%s\n", content);
+  // id|password (hashed) 
+  std::string content = std::to_string(this->id) + "|" + password.str() + "\n";
+
+  std::fstream file("filename.txt", file.out | file.app);
+  file << content;
+
+  std::cout << "Saved: " << content << std::endl;
+
+  does_id_exits(std::to_string(this->id));
 };
 
 int User::login(char *raw_password) {
@@ -20,6 +42,7 @@ int User::login(char *raw_password) {
   return 0;
 }
 
+/*
 User& User::get(int id) {
   // Read file
   // if id of row == id:

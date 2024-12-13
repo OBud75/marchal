@@ -13,8 +13,8 @@ class Password {
 
     public:
         Password(const std::string &password, bool is_encrypted = false);
-        std::string str() const;
 
+        std::string str() const;
         bool operator==(const std::string &str) const;
         bool operator==(const Password &other) const;
         friend std::ostream &operator<<(std::ostream &os, const Password &p);

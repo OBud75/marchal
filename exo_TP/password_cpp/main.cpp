@@ -8,12 +8,10 @@ int main() {
   // person.save()
 
 
-  auto pwd = Password("mypassword"); 
-  //std::cout << p->str() << std::endl;
+  Password pwd = Password("mypassword"); 
 
-  auto u = User(1, pwd);
-
-  std::cout << "ok" << std::endl;
+  User u = User(1, pwd);
+  u.save();
 
   return 0;
 };
