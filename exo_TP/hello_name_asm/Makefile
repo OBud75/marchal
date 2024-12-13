@@ -1,8 +1,12 @@
+source=main.asm
+output=prog.out
 
 run:
-	nasm -f elf64 -o main.o main.asm
-	ld -o main.out main.o
-	./main.out
+	nasm -f elf64 -o main.o ${source}
+	ld -o ${output} main.o
+	rm -f main.o
+	./${output}
 
 clean:
-	rm main.out main.o
+	rm -f ${output}
+
