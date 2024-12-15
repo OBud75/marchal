@@ -14,6 +14,7 @@ class Password {
     public:
         Password(const std::string &password, bool is_encrypted = false);
 
+	static std::string encrypt(std::string);
         std::string str() const;
         bool operator==(const std::string &str) const;
         bool operator==(const Password &other) const;

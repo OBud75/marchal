@@ -25,9 +25,13 @@ bool Password::is_valid(const std::string &password) const {
     return true;
 }
 
+std::string Password::encrypt(std::string str) {
+    return "ENC(" + str + ")";
+}
+
 void Password::encrypt() {
     // Simple encryption logic for demonstration purposes
-    encrypted_value = "ENC(" + raw_value + ")";
+    encrypted_value = encrypt(raw_value);
 }
 
 std::string Password::str() const {
