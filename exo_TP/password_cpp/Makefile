@@ -1,7 +1,10 @@
 output=prog.out 
 
-run:
+all:
 	g++ *.cpp -o ${output}
+	./${output}
+
+run:
 	./${output}
 
 clean:
