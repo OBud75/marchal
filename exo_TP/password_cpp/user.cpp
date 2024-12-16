@@ -74,7 +74,8 @@ int User::login(std::string raw_password) {
   return 0;
 }
 
-std::unique_ptr<User> User::get(int id, Password pwd) {
+User* User::get(int id, Password pwd) {
+	// this sucks because you have to free the memory
 	if (id_exists(id)) {
 		std::string content = std::to_string(id) + "|" + pwd.str();
 
@@ -83,7 +84,7 @@ std::unique_ptr<User> User::get(int id, Password pwd) {
 		std::string line;
 		while (std::getline(file, line)) {
 			if (line==content) {
-				return std::make_unique<User>(-1, pwd);
+				return new User(id, pwd);
 			}
 		}
 		file.close();

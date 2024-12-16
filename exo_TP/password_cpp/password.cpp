@@ -1,4 +1,6 @@
 #include "password.hpp"
+#include <functional> // For std::hash
+
 
 Password::Password(const std::string &password, bool is_encrypted) {
     if (!is_encrypted) {
@@ -26,7 +28,11 @@ bool Password::is_valid(const std::string &password) const {
 }
 
 std::string Password::encrypt(std::string str) {
-    return "ENC(" + str + ")";
+    // return "ENC(" + str + ")";
+    // Doing is better... (ref: https://en.cppreference.com/w/cpp/utility/hash):
+    std::hash<std::string> hasher;
+    std::size_t hashed_value = hasher(str); // `size_t` is an `unsigned int`
+    return std::to_string(hashed_value);
 }
 
 void Password::encrypt() {

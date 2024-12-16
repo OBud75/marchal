@@ -2,27 +2,23 @@
 #include "user.hpp"
 
 int main() {
-  // Create a Person with password
-  // test password encryption
-      // assert person.password == "toto"
-  // person.save()
-
-
-  /*
+  
   Password pwd = Password("mypassword"); 
 
   User u = User(1, pwd);
-  //u.save();
+  u.save();
   u.login("mypassword");
   u.save();
 
   std::cout << "user: " << u.str() << std::endl;
   std::cout << u << std::endl;
-  */
+  
 
-  auto u2 = User::get(1,Password("mypassword"));
+  User* u2 = User::get(1,Password("mypassword"));
+  (*u2).login("mypassword");
   if (u2) {
-  	std::cout << *u2 << std::endl;
+  	std::cout << "Another instance of the same user: "<< *u2 << std::endl;
+    delete u2;
   }
 
   return 0;
