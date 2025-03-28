@@ -7,6 +7,7 @@ Password::Password(const std::string &password, bool is_encrypted) {
         }
         raw_value = password;
         encrypt();
+        // Même si le mot de passe n'est pas valide, le code continue comme si de rien n'était 
     } else {
         encrypted_value = password;
     }

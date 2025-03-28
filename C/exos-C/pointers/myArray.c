@@ -8,6 +8,9 @@ Array* create_array(int capacity) {
     if (!arr) {
         printf("Memory allocation failed.\n");
         return NULL;
+        // Il est peut etre préférable de quitter ?
+        // Ou alors il faut gérer le cas ou
+        // create_array retourne NULL depuis le code appelant
     }
 
     arr->size = 0;

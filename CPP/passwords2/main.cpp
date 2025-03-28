@@ -33,5 +33,9 @@ int main() {
     }
 
     return 0;
+    // On évite de tout encapsuler dans un seul try/catch
+    // Le code qui ne peut pas provoquer d'erreur n'a rien à y faire (typiquement les std::cout)
+    // En isolant chaque appel qui peut lever une exception dans son propre try/catch, on aura
+    // une gestion beaucoup plus fine des erreurs.
 }
 

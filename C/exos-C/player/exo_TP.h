@@ -28,6 +28,7 @@ void free_map(Map* map);
 void load_blocks(Map* map);	
 void move(Player* player, char direction);
 void show_player(Map* map, Player players[]); // shows a player on a map
+// Pourquoi avec ajouté ce commentaire et pas un autre ?
 void clear_screen();
 
 #endif
