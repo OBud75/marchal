@@ -6,15 +6,18 @@ with open("sitemap.xml", 'r') as f:
 
 content = content[2].split("https")
 
-l = []
+l = [] # Donnez des noms de variables explicites
 searched = "://readi.fi/asset"
 for url in content:
     if searched in url:
         l.append("https"+url)
+# urls = [f"https{url}" for url in content if searched in url]
 
 l_title_desc = []
 def get_content(url):
     global l_title_desc
+    # On préfèrera passer la liste en argument plutôt que de la déclarer globale
+    # (sauf si vous avez une très bonne raison de le faire)
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
 
@@ -32,8 +35,13 @@ print("getting content")
 l_threads = []
 for i in range(len(l)):
     t = threading.Thread(target=get_content, args=(l[i],)) # l[i] = url; let the `,` where it is.
+    # args doit être un itérable (tuple, liste...)
+    # args=(l[i],) est un tuple avec un seul élément, c'est pourquoi il y a la virgule
+    # Le commentaire laisse penser qu'il y a quelque chose de bizarre alors que c'est de la syntax classique
     t.start()
     l_threads.append(t)
+# for url in l:
+#    t = threading.Thread(target=get_content, args=(url,))
 
 for t in l_threads: t.join()
 

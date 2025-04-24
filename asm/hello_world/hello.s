@@ -23,3 +23,8 @@ hello_ptr:
 
 hello_size:
   .int 13 
+
+; Les commentaires ressembles à des noms de fonctions.
+; Créer des fonctions (exit, read, write...) puis les appeler depuis _start rendra le code plus "humain"
+; Les commentaires deviendront redondants et on peut donc les enlever ce qui est une bonne chose
+; car moins de maintenance et erreurs possibles (le commentaire peut mentir).
